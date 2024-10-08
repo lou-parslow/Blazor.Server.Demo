@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 <PageTitle>Index</PageTitle>
 
@@ -7,3 +9,14 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+<AuthorizeView>
+    <Authorized>
+        <p>Hello, @context.User.Identity.Name!</p>
+        <a href="MicrosoftIdentity/Account/SignOut">Logout</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="MicrosoftIdentity/Account/SignIn">Login</a>
+    </NotAuthorized>
+</AuthorizeView>
